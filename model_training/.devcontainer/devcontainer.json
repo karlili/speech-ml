@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+  "name": "(debain) speech-mltraining",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1.6.5": {
+      "version": ["3.10"]
+    },
+    "ghcr.io/devcontainers-contrib/features/tmux-apt-get:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/poetry:2.0.17": {},
+    "ghcr.io/devcontainers-contrib/features/black:2": {},
+    "ghcr.io/devcontainers-contrib/features/ffmpeg-apt-get:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-hub",
+        "GitHub.github-vscode-theme",
+        "GitHub.remotehub",
+        "ms-toolsai.datawrangler",
+        "ms-python.black-formatter"
+      ]
+    }
+  },
+  "mounts": [
+    //this binds the local ssh keys into the devcontainer
+    "source=/home/kenny/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    "source=/home/kenny/.1password,target=/home/vscode/.1password,type=bind,consistency=cached"
+    // "source=${localEnv:HOME}/Downloads/model,target=/workspaces/langauge_x_change/dockerise_training/model,type=bind,consistency=cached"
+  ],
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [8000]
+
+  // Configure tool-specific properties.
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}
